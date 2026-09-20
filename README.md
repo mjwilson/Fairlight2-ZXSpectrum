@@ -6,3 +6,6 @@ can't be completed, and whether there is a sensible change which could be to fix
 line with the original intentions (if possible).
 
 Inspiration taken from https://github.com/VilleKrumlinde/FairlightZ80/tree/main
+
+The analysis is done against the 48K version. Where memory addresses are specified,
+these may vary beetween different editions of the game.
