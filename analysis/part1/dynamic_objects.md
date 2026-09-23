@@ -1,18 +1,7 @@
 # Dynamic objects
 
-By "dynamic objects" I mean to both collectable objects and enemies. These are
-held in the same data structure.
-
-Each object has a 6-byte data structure. The first byte holds the room number
-which the object is in. The second byte identifies the type of object.
-
 There is a primary copy of the object data at BD00. At the start of the game,
 this is copied to D556, which is the in-game copy of the data.
-
-When the player enters a room, the in-game table is scanned, and other data
-structures are created to represent the live view of the objects. When the
-player exits, then the table is updated with the latest information (such as
-a  new position).
 
 ```
 bd00: 02 2a 2f 82 8c 78 ; magic potion
