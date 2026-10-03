@@ -12,3 +12,7 @@ these may vary beetween different editions of the game.
 
  * [Room format](./analysis/room_format.md).
  * [Dynamic objects](./analysis/dynamic_objects.md).
+
+ ## AI usage
+
+ I started the analysis manually but more recently a huge amount of it has been done by Claude Code.
