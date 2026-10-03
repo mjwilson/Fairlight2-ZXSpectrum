@@ -114,6 +114,55 @@ bf7c: 49 23 c0 96 4a 6c ; guard
 bf82: ff
 ```
 
-Seems to be some kind of confusion about object types 23 and 25.
-I have decoded both as 'guard' but room 46 lists one of each, even
-though during play there is only one guard in the room.
+Each entry is `<room> <type> <flags> <x> <y> <z>`. See [the general description](../dynamic_objects.md)
+for what the fields mean.
+
+## Object types in part 1
+
+The attributes come from the object-type table at 7768 (see
+[Object-type table](../dynamic_objects.md#object-type-table-7768-11-bytes-per-entry)).
+
+| Type | Name | Image | Flags | Meaning of the flags | Sprite | Size (x, y, z) | Class | Byte 16 |
+|------|------|-------|-------|----------------------|--------|----------------|-------|---------|
+| 02 | bubble | [![02](sprites/type_02_bubble.png)](sprites/type_02_bubble.png) | 90 | Touching it costs the player 10 energy and pops it (bit 4); it also hurts on contact (bit 7) | 24x21 | 0A 10 0A | 03 | 10 |
+| 08 | barrel | [![08](sprites/type_08_barrel.png)](sprites/type_08_barrel.png) | 20 | Portable | 24x29 | 0C 16 0E | 00 | 16 (weight 6) |
+| 09 | bottle | [![09](sprites/type_09_bottle.png)](sprites/type_09_bottle.png) | 24 | Portable; energy + 10 when used | 16x16 | 06 0C 06 | 00 | 10 (weight 0) |
+| 0B, 0C, 0F | rock | [![0B](sprites/type_0B_rock.png)](sprites/type_0B_rock.png) [![0C](sprites/type_0C_rock.png)](sprites/type_0C_rock.png) [![0F](sprites/type_0F_rock.png)](sprites/type_0F_rock.png) | 20 | Portable | 16x12 to 16x14 | 06 06-08 06 | 00 | 0B, 0C: 16 (weight 6); 0F: 10 (weight 0) |
+| 0E | key | [![0E](sprites/type_0E_key.png)](sprites/type_0E_key.png) | 20 | Portable (opens doors) | 16x5 | 04 02 08 | 00 | 10 (weight 0) |
+| 1F | chicken | [![1F](sprites/type_1F_chicken.png)](sprites/type_1F_chicken.png) | 24 | Portable; energy + 10 when used | 16x10 | 06 06 08 | 00 | 10 (weight 0) |
+| 21 | wolf | [![21](sprites/type_21_wolf.png)](sprites/type_21_wolf.png) | C0 | Creature: hurts, can be killed | 40x30 | 10 14 10 | 07 | 16 (mass) |
+| 23 | guard | [![23](sprites/type_23_guard.png)](sprites/type_23_guard.png) | C0 | Creature: hurts, can be killed | 24x26 | 0A 18 0A | 06 | 14 (mass) |
+| 24, 25 | guard | [![24](sprites/type_24_guard.png)](sprites/type_24_guard.png) [![25](sprites/type_25_guard.png)](sprites/type_25_guard.png) | C0 | Creature: hurts, can be killed | 24x26 | 0A 18 0A | 09 | 14 (mass) |
+| 29 | magic wand | [![29](sprites/type_29_magic_wand.png)](sprites/type_29_magic_wand.png) | 2E | Portable, kind E | 16x7 | 0C 04 06 | 00 | 10 (weight 0) |
+| 2A | magic potion | [![2A](sprites/type_2A_magic_potion.png)](sprites/type_2A_magic_potion.png) | 2F | Portable; turns the player into a witch when used | 16x7 | 06 06 06 | 00 | 10 (weight 0) |
+| 2B | potion | [![2B](sprites/type_2B_potion.png)](sprites/type_2B_potion.png) | 26 | Portable; energy set to 99 when used | 16x10 | 06 08 06 | 00 | 10 (weight 0) |
+| 31 | sword | [![31](sprites/type_31_sword.png)](sprites/type_31_sword.png) | 2A | Portable; used in room 0E, it ends part 1 | 16x7 | 0C 04 06 | 00 | 10 (weight 0) |
+| 33 | moving block | [![33](sprites/type_33_moving_block.png)](sprites/type_33_moving_block.png) | 00 | Fixed (cannot be picked up) | 40x23 | 10 06 10 | 01 | 18 |
+
+## Notes
+
+- **Item ids.** An object's id is its 1-based position in this list: the magic potion (BD00) is
+  item 1, and the magic wand (BEB0) is item 49 (hex; the 73rd entry). A door's lock stores the id of its key minus 1,
+  so the keys (items 2-7) open locks 1-6.
+- **Guards (types 23, 24 and 25).** All three use the same sprite, size and mass. They differ in
+  class, which selects the behaviour routine: type 23 is class 6, which only chases the player
+  when it is near and otherwise keeps walking in its current direction; types 24 and 25 are
+  class 9, which always chases. In room 46 the list has a type 23 and a type 25 guard at exactly
+  the same position (4E, 4A, 82), but only one guard ever appears. On the first tick after the
+  player enters a room, bit 2 of 7B87 is set (by the room-entry template). If an object then
+  overlaps another movable object, the other one is flagged as taken and erased (84F2, 8574).
+  The flag is cleared after that tick. So one of the two guards is removed as soon as the room is
+  set up, probably the type 25 one, since the type 23 guard comes first and is processed first.
+  This is not written back to the list as location FE, so it happens again on every visit.
+- **Wolves (type 21)** are class 7. While the player is a witch, class 7 creatures stop homing in
+  on the player, which is how the magic potion repels wolves. They are heavier than the guards
+  (mass 16 against 14), so they are harder to shove.
+- **The magic potion** has 10 uses (7B79 is set to 10 by template 6A). See
+  [Magic potion and magic carpet](../dynamic_objects.md#magic-potion-and-magic-carpet).
+- **The sword (type 31, kind A)** moves the player to room 64 when used in room 0E. Room 64 ends
+  part 1 and loads part 2.
+- **The magic wand (type 29)** does nothing when used in part 1. Nothing in part 1's code checks for it (for example, it gives no protection from bubbles). Carried into part 2, it becomes
+  the key to the door from room 50 to room 51 (see
+  [part 2](../part2/dynamic_objects.md#notes)).
+- **Barrels and the heavier rocks** (types 0B and 0C) weigh 6, so with the carry limit of 8 the
+  player can carry only one of them at a time.
