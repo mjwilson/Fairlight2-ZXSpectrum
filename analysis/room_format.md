@@ -58,10 +58,10 @@ The addresses for the implementation of the opcodes are stored in a data table a
 | e0 | 7133 | Print a number in decimal, without leading zeros: `E0 <value>`. |
 | e1 | 70e4 | Set or clear flag bit 10 of C024 (relative coordinates): `E1 <v>`. The bit is set if bit 0 of v is 1 (usually var29) and cleared if it is 0 (usually var28). See [Drawing flags](#drawing-flags-c024). |
 | e2 | 70e8 | Set or clear flag bit 04 of C024 (chain lines): `E2 <v>`. The bit is set if bit 0 of v is 1 (usually var29) and cleared if it is 0 (usually var28). See [Drawing flags](#drawing-flags-c024). |
-| e3 | 70ec | Set or clear flag bit 02 of C024 (XOR mode): `E3 <v>`. The bit is set if bit 0 of v is 1 (usually var29) and cleared if it is 0 (usually var28). See [Drawing flags](#drawing-flags-c024). |
+| e3 | 70ec | Set or clear flag bit 02 of C024 (erase mode): `E3 <v>`. The bit is set if bit 0 of v is 1 (usually var29) and cleared if it is 0 (usually var28). See [Drawing flags](#drawing-flags-c024). |
 | e4 | 70f0 | Set or clear flag bit 20 of C024 (pen down): `E4 <v>`. The bit is set if bit 0 of v is 1 (usually var29) and cleared if it is 0 (usually var28). See [Drawing flags](#drawing-flags-c024). |
 | e5 | 70f4 | Set or clear flag bit 40 of C024 (mirror x): `E5 <v>`. The bit is set if bit 0 of v is 1 (usually var29) and cleared if it is 0 (usually var28). See [Drawing flags](#drawing-flags-c024). |
-| e6 | 70f8 | Set or clear flag bit 01 of C024 (erase mode): `E6 <v>`. The bit is set if bit 0 of v is 1 (usually var29) and cleared if it is 0 (usually var28). See [Drawing flags](#drawing-flags-c024). |
+| e6 | 70f8 | Set or clear flag bit 01 of C024 (XOR mode): `E6 <v>`. The bit is set if bit 0 of v is 1 (usually var29) and cleared if it is 0 (usually var28). See [Drawing flags](#drawing-flags-c024). |
 | e7 | 75bd | Sets up an exit to another room: `E7 <n> <room> <x> <y> <z>`. Finds the n-th object in the room whose kind (record byte 12, low nibble) is 1 - i.e. normally the n-th `D5` doorway placed so far - and writes `<room>` and the 3 position bytes into record bytes 14-17. The position is presumably where the player appears in the destination room. |
 | e8 | 70bf | Print one character: `E8 <char>`. |
 | e9 | 724c | POKEs an address. Often used to mark an exit as locked. Most commonly used as `E9 FE <lo> <hi> FF <val>` to POKE val into hilo, but can also be used as `E9 FE <lo> <hi> <ix>` to look up the value to POKE from the table at C060 (see below). | 
@@ -184,8 +184,8 @@ below are checked against the code (6DCD-6E07 for coordinates, 7025-7046 for plo
 
 | Bit | Set by | Meaning |
 |-----|--------|---------|
-| 0 (01) | E6 | Erase: the pixel is cleared (7032, with bit 1 clear). Also used by text control codes 1D and 1E. |
-| 1 (02) | E3 | XOR: the pixel is toggled. Also used by text control codes 04 and 05. |
+| 0 (01) | E6 | XOR: the pixel is toggled (7032). Also used by text control codes 1D and 1E. |
+| 1 (02) | E3 | Erase, when bit 0 is clear: the pixel is ORed and then toggled, which clears it (702C). Also used by text control codes 04 and 05. |
 | 2 (04) | E2 | Chain: after drawing, the line start (C039) moves to the pen (6E03). |
 | 3 (08) | D1 only | Colour: each plotted pixel also sets its attribute cell from C022, through the mask C027 (675F). Also used by text control codes 18 and 19. |
 | 4 (10) | E1 | Relative: coordinates are added to the current position. When clear, they are added to the origin set by `FA` (C062/C063). |
