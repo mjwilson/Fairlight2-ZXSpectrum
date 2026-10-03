@@ -151,8 +151,11 @@ the same in both parts.
 
   The skeleton also has the largest bounding box (0E wide). The disk's class (0D) makes it move
   in random directions rather than chase the player.
-- **The disk with flags A0** is flagged as portable, but it weighs 8, which is the carry limit,
-  so trying to pick it up should always give "TOO HEAVY".
+- **The disk with flags A0** is flagged as portable and weighs 8. Part 2's carry limit is 9 (part
+  1's is 8), so it can be picked up, but only when everything else being carried weighs 0.
+  Otherwise the game shows "TOO HEAVY". Confirmed in the game: the disk in room 0F can be picked
+  up, and carrying the magic carpet (weight 4) at the same time gives "TOO HEAVY". The disks that can be picked up are in rooms 0F (one), 24, 26 and 3E (two each). The two in
+  room 19 have flags 80 and cannot be picked up.
 - **The spiky ball (kind C) is a weapon.** Using it arms it. When it is then dropped, it moves (hovering) in
   the direction the player is moving, and the player can steer it. It destroys the first creature
   it hits, including monks, which cannot be killed with the sword. In practice it cannot kill the
