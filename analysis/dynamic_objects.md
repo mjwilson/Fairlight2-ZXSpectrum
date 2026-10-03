@@ -142,9 +142,10 @@ Byte 16 comes from byte 10 of the type table. Its low 5 bits are used in two way
   objects.
 - **Weight** (for items). When the player picks something up (8062), the weight is
   `(byte16 & 1F) - 10` (0 if that goes negative). The weight is added to the player's current
-  load at 7B82. If the total would be equal to or more than the limit at 7B83 (8), the pick-up
-  fails, and the "TOO HEAVY" message is shown. The values used are 10, 13, 14, 16 and 18, which
-  are weights 0, 3, 4, 6 and 8. An object of weight 8 can never be picked up.
+  load at 7B82. If the total would be equal to or more than the limit at 7B83 (8 in part 1, 9 in part
+  2, set on every room entry), the pick-up fails, and the "TOO HEAVY" message is shown. The values used are 10, 13, 14, 16 and 18, which
+  are weights 0, 3, 4, 6 and 8. In part 1 an object of weight 8 can never be picked up. In part 2 it can, but only when everything
+  else being carried weighs 0.
 - **Mass** (for anything that moves). When a moving object bumps into another (875E-877D), the
   target is shoved if **mover's mass + 5 >= target's mass**. The shove lasts
   **(mover's mass + 5 - target's mass) + 1** ticks, stored in the target's byte 15, and bit 7 of
