@@ -1,13 +1,11 @@
 # Templates in part 2
 
-| Template index  | Comments |
-| ------------ | -------- |
-| 0x05, 0x0f ... 0x51          | Regular rooms          |
-| 0x52 | end of part 2 |
+The rooms in part 2 are between positions 0x05 and 0x51 (although this range also includes templates which are not rooms).
 
+Room 0x23 is unused.
+
+## TEMPLATE 00 (not run by the game: the names of the script variables, from var20 upwards)
 ```
-
-TEMPLATE 00 (not run by the game: the names of the script variables, from var20 upwards)
 c200: ec 03 41 1f ; name of var20: "A"
 c204: ec 03 42 1f ; name of var21: "B"
 c208: ec 03 43 1f ; name of var22: "C"
@@ -37,24 +35,33 @@ c279: ec 04 4e 39 1f ; name of var39: "N9"
 c27e: ec 05 4e 31 33 1f ; name of var3A: "N13"
 c284: ec 04 41 41 1f ; name of var3B: "AA"
 c289: ec 05 4b 45 59 1f ; name of var3C: "KEY"
+```
 
-TEMPLATE 01
+## TEMPLATE 01
+[![Template 01](templates/template_01.png)
+```
 c28f: ee 06 3b fe e7 03 1f ; evaluate expression
 c296: ee 05 21 ff 05 1f ; evaluate expression
 c29c: ee 04 34 21 1f ; evaluate expression
 c2a1: ee 04 20 21 1f ; evaluate expression
 c2a6: d6 ff 75 ; include template
 c2a9: d6 ff 83 ; include template
+```
 
-TEMPLATE 02
+## TEMPLATE 02
+[![Template 02](templates/template_02.png)]
+```
 c2ac: c4 ; line start = pen
 c2ad: e1 29 ; flag 10: relative coords
 c2af: 01 01 ; pen to (y, x)
 c2b1: d6 ff 53 ; include template
 c2b4: b9 27 ; pen to (y, x)
 c2b6: d6 ff 53 ; include template
+```
 
-TEMPLATE 03
+## TEMPLATE 03
+[![Template 03](templates/template_03.png)]
+```
 c2b9: c4 ; line start = pen
 c2ba: e1 29 ; flag 10: relative coords
 c2bc: 01 01 ; pen to (y, x)
@@ -63,16 +70,22 @@ c2c0: b8 26 ; pen to (y, x)
 c2c2: d6 2a ; include template
 c2c4: b9 27 ; pen to (y, x)
 c2c6: d6 ff 53 ; include template
+```
 
-TEMPLATE 04
+## TEMPLATE 04
+[![Template 04](templates/template_04.png)]
+```
 c2c9: c4 ; line start = pen
 c2ca: e1 29 ; flag 10: relative coords
 c2cc: 01 01 ; pen to (y, x)
 c2ce: d6 2b ; include template
 c2d0: b7 25 ; pen to (y, x)
 c2d2: d6 2b ; include template
+```
 
-TEMPLATE 05
+## TEMPLATE 05
+[![Template 05](templates/template_05.png)]
+```
 c2d4: d0 28 ; set attribute
 c2d6: d1 24 ; set drawing flags (C024)
 c2d8: da 00 80 ; move line start
@@ -114,8 +127,11 @@ c324: dc 29 ; textured flood fill
 c326: c2 10 ; set room bounding box (preset)
 c328: d5 00 6a 5c 64 ; place doorway (type, x, y, z)
 c32d: e7 01 0f 36 5c 64 ; room exit
+```
 
-TEMPLATE 06
+## TEMPLATE 06
+[![Template 06](templates/template_06.png)]
+```
 c333: d6 ff 73 ; include template
 c336: da 00 01 ; move line start
 c339: 95 01 ; pen to (y, x)
@@ -173,8 +189,11 @@ c3a1: 0d 11 ; pen to (y, x)
 c3a3: dc ff 0e ; textured flood fill
 c3a6: 0b f3 ; pen to (y, x)
 c3a8: dc 2b ; textured flood fill
+```
 
-TEMPLATE 07
+## TEMPLATE 07
+[![Template 07](templates/template_07.png)]
+```
 c3aa: d6 ff 73 ; include template
 c3ad: da 01 01 ; move line start
 c3b0: 28 01 ; pen to (y, x)
@@ -187,8 +206,11 @@ c3bc: e2 28 ; flag 04: chain lines
 c3be: 01 fa ; pen to (y, x)
 c3c0: dc 2b ; textured flood fill
 c3c2: e1 28 ; flag 10: relative coords
+```
 
-TEMPLATE 08
+## TEMPLATE 08
+[![Template 08](templates/template_08.png)]
+```
 c3c4: d6 ff 73 ; include template
 c3c7: da 01 01 ; move line start
 c3ca: 2d 01 ; pen to (y, x)
@@ -201,8 +223,11 @@ c3d6: b5 17 ; pen to (y, x)
 c3d8: e1 28 ; flag 10: relative coords
 c3da: e2 28 ; flag 04: chain lines
 c3dc: e4 28 ; flag 20: pen down
+```
 
-TEMPLATE 09
+## TEMPLATE 09
+[![Template 09](templates/template_09.png)]
+```
 c3de: d6 ff 73 ; include template
 c3e1: da 23 00 ; move line start
 c3e4: 25 06 ; pen to (y, x)
@@ -218,8 +243,11 @@ c3f7: 9a 00 ; pen to (y, x)
 c3f9: b5 17 ; pen to (y, x)
 c3fb: e2 28 ; flag 04: chain lines
 c3fd: e4 28 ; flag 20: pen down
+```
 
-TEMPLATE 0a
+## TEMPLATE 0a
+[![Template 0a](templates/template_0A.png)]
+```
 c3ff: d5 00 7a 5c 6c ; place doorway (type, x, y, z)
 c404: d5 00 a4 86 4e ; place doorway (type, x, y, z)
 c409: 45 4b ; pen to (y, x)
@@ -285,8 +313,11 @@ c49c: ee 05 23 ff 56 1f ; evaluate expression
 c4a2: ee 05 2e ff 34 1f ; evaluate expression
 c4a8: ee 05 2f ff 0b 1f ; evaluate expression
 c4ae: d6 ff 54 ; include template
+```
 
-TEMPLATE 0b
+## TEMPLATE 0b
+[![Template 0b](templates/template_0B.png)]
+```
 c4b1: d5 00 6c 90 9a ; place doorway (type, x, y, z)
 c4b6: 39 32 ; pen to (y, x)
 c4b8: d7 2c ; include template (save/restore state)
@@ -325,8 +356,11 @@ c4fe: ee 05 23 ff 3c 1f ; evaluate expression
 c504: ee 05 2e ff 36 1f ; evaluate expression
 c50a: ee 05 2f ff 0d 1f ; evaluate expression
 c510: d6 ff 54 ; include template
+```
 
-TEMPLATE 0c
+## TEMPLATE 0c
+[![Template 0c](templates/template_0C.png)]
+```
 c513: e2 29 ; flag 04: chain lines
 c515: e4 29 ; flag 20: pen down
 c517: da 17 53 ; move line start
@@ -337,8 +371,11 @@ c520: 17 53 ; pen to (y, x)
 c522: e2 28 ; flag 04: chain lines
 c524: e4 28 ; flag 20: pen down
 c526: c2 13 ; set room bounding box (preset)
+```
 
-TEMPLATE 0d
+## TEMPLATE 0d
+[![Template 0d](templates/template_0D.png)]
+```
 c528: e2 29 ; flag 04: chain lines
 c52a: e4 29 ; flag 20: pen down
 c52c: da 00 80 ; move line start
@@ -366,8 +403,11 @@ c559: dc 29 ; textured flood fill
 c55b: aa 6e ; pen to (y, x)
 c55d: dc 29 ; textured flood fill
 c55f: c2 12 ; set room bounding box (preset)
+```
 
-TEMPLATE 0e
+## TEMPLATE 0e
+[![Template 0e](templates/template_0E.png)]
+```
 c561: d6 ff 0c ; include template
 c564: 76 e4 ; pen to (y, x)
 c566: d6 37 ; include template
@@ -394,15 +434,21 @@ c596: ee 05 23 ff bc 1f ; evaluate expression
 c59c: ee 05 2e ff 34 1f ; evaluate expression
 c5a2: ee 04 2f 2c 1f ; evaluate expression
 c5a7: d6 ff 54 ; include template
+```
 
-TEMPLATE 0f
+## TEMPLATE 0f
+[![Template 0f](templates/template_0F.png)]
+```
 c5aa: d6 ff 0a ; include template
 c5ad: d5 01 30 5c 64 ; place doorway (type, x, y, z)
 c5b2: e7 01 24 60 5c 64 ; room exit
 c5b8: e7 02 11 34 5c 64 ; room exit
 c5be: e7 03 05 66 5c 64 ; room exit
+```
 
-TEMPLATE 10
+## TEMPLATE 10
+[![Template 10](templates/template_10.png)]
+```
 c5c4: 8e 74 ; pen to (y, x)
 c5c6: d6 37 ; include template
 c5c8: d6 ff 0a ; include template
@@ -416,8 +462,11 @@ c5dd: e7 01 2f 36 5c 64 ; room exit
 c5e3: e7 02 34 48 5c 7e ; room exit
 c5e9: e7 03 31 4a 5c 6c ; room exit
 c5ef: e7 04 11 68 90 9a ; room exit
+```
 
-TEMPLATE 11
+## TEMPLATE 11
+[![Template 11](templates/template_11.png)]
+```
 c5f5: 23 ae ; pen to (y, x)
 c5f7: d6 37 ; include template
 c5f9: d6 ff 0b ; include template
@@ -430,8 +479,11 @@ c60a: d5 00 6c 5c 40 ; place doorway (type, x, y, z)
 c60f: e7 02 12 60 5c 64 ; room exit
 c615: d5 01 30 5c 64 ; place doorway (type, x, y, z)
 c61a: e7 03 0f a0 86 4e ; room exit
+```
 
-TEMPLATE 12
+## TEMPLATE 12
+[![Template 12](templates/template_12.png)]
+```
 c620: d6 ff 13 ; include template
 c623: 5c 2c ; pen to (y, x)
 c625: d7 ff 15 ; include template (save/restore state)
@@ -445,8 +497,11 @@ c637: e7 01 16 64 5c 36 ; room exit
 c63d: e7 02 11 68 5c 40 ; room exit
 c643: d5 03 64 5c 30 ; place doorway (type, x, y, z)
 c648: e7 03 14 4e 5c 88 ; room exit
+```
 
-TEMPLATE 13
+## TEMPLATE 13
+[![Template 13](templates/template_13.png)]
+```
 c64e: 5d 2b ; pen to (y, x)
 c650: e5 29 ; flag 40: mirror x
 c652: d6 37 ; include template
@@ -467,8 +522,11 @@ c672: 96 31 ; pen to (y, x)
 c674: dc ff 10 ; textured flood fill
 c677: c2 11 ; set room bounding box (preset)
 c679: d5 02 64 5c b8 ; place doorway (type, x, y, z)
+```
 
-TEMPLATE 14
+## TEMPLATE 14
+[![Template 14](templates/template_14.png)]
+```
 c67e: 3b 43 ; pen to (y, x)
 c680: d7 ff 15 ; include template (save/restore state)
 c683: d6 3a ; include template
@@ -478,8 +536,11 @@ c689: 3c 64 ; pen to (y, x)
 c68b: dc 3a ; textured flood fill
 c68d: d5 02 4e 5c 8c ; place doorway (type, x, y, z)
 c692: e7 01 12 64 5c 34 ; room exit
+```
 
-TEMPLATE 15
+## TEMPLATE 15
+[![Template 15](templates/template_15.png)]
+```
 c698: c4 ; line start = pen
 c699: d1 50 ; set drawing flags (C024)
 c69b: 01 01 ; pen to (y, x)
@@ -491,8 +552,11 @@ c6a6: e4 28 ; flag 20: pen down
 c6a8: 0b 00 ; pen to (y, x)
 c6aa: dc 35 ; textured flood fill
 c6ac: d1 00 ; set drawing flags (C024)
+```
 
-TEMPLATE 16
+## TEMPLATE 16
+[![Template 16](templates/template_16.png)]
+```
 c6ae: d6 ff 13 ; include template
 c6b1: d1 00 ; set drawing flags (C024)
 c6b3: 5d 2b ; pen to (y, x)
@@ -502,8 +566,11 @@ c6ba: dc 29 ; textured flood fill
 c6bc: e7 01 17 46 5c 34 ; room exit
 c6c2: d5 03 64 5c 32 ; place doorway (type, x, y, z)
 c6c7: e7 02 12 64 5c b4 ; room exit
+```
 
-TEMPLATE 17
+## TEMPLATE 17
+[![Template 17](templates/template_17.png)]
+```
 c6cd: 40 4c ; pen to (y, x)
 c6cf: d7 ff 18 ; include template (save/restore state)
 c6d2: d6 ff 0b ; include template
@@ -524,8 +591,11 @@ c6fb: e7 02 1b c8 70 5e ; room exit
 c701: e7 03 16 64 5c b4 ; room exit
 c707: d5 02 58 54 8c ; place doorway (type, x, y, z)
 c70c: e7 04 1c 64 54 36 ; room exit
+```
 
-TEMPLATE 18
+## TEMPLATE 18
+[![Template 18](templates/template_18.png)]
+```
 c712: c4 ; line start = pen
 c713: d1 50 ; set drawing flags (C024)
 c715: d7 37 ; include template (save/restore state)
@@ -537,8 +607,11 @@ c720: e4 28 ; flag 20: pen down
 c722: 03 ff ; pen to (y, x)
 c724: dc ff 0e ; textured flood fill
 c727: e5 28 ; flag 40: mirror x
+```
 
-TEMPLATE 19
+## TEMPLATE 19
+[![Template 19](templates/template_19.png)]
+```
 c729: d6 ff 0e ; include template
 c72c: d1 00 ; set drawing flags (C024)
 c72e: 96 e4 ; pen to (y, x)
@@ -546,15 +619,21 @@ c730: dc 39 ; textured flood fill
 c732: d5 01 30 5c 66 ; place doorway (type, x, y, z)
 c737: e7 01 1a 36 5c 36 ; room exit
 c73d: e7 02 17 6c 90 9a ; room exit
+```
 
-TEMPLATE 1a
+## TEMPLATE 1a
+[![Template 1a](templates/template_1A.png)]
+```
 c743: d6 ff 0d ; include template
 c746: 32 64 ; pen to (y, x)
 c748: dc 39 ; textured flood fill
 c74a: d5 01 30 5c 32 ; place doorway (type, x, y, z)
 c74f: e7 01 19 c8 6e 66 ; room exit
+```
 
-TEMPLATE 1b
+## TEMPLATE 1b
+[![Template 1b](templates/template_1B.png)]
+```
 c755: d6 ff 0e ; include template
 c758: d1 00 ; set drawing flags (C024)
 c75a: 96 e4 ; pen to (y, x)
@@ -562,8 +641,11 @@ c75c: dc 3a ; textured flood fill
 c75e: d5 03 38 5c 5e ; place doorway (type, x, y, z)
 c763: e7 01 17 36 5c 36 ; room exit
 c769: e7 02 24 64 5c b4 ; room exit
+```
 
-TEMPLATE 1c
+## TEMPLATE 1c
+[![Template 1c](templates/template_1C.png)]
+```
 c76f: 7f 7e ; pen to (y, x)
 c771: d6 36 ; include template
 c773: d1 40 ; set drawing flags (C024)
@@ -596,8 +678,11 @@ c7ac: d5 00 7e 5c 6e ; place doorway (type, x, y, z)
 c7b1: d5 03 66 5c 30 ; place doorway (type, x, y, z)
 c7b6: e7 01 1d 34 5c 66 ; room exit
 c7bc: e7 02 17 58 5c 88 ; room exit
+```
 
-TEMPLATE 1d
+## TEMPLATE 1d
+[![Template 1d](templates/template_1D.png)]
+```
 c7c2: d6 fe 0c 00 ; include template
 c7c6: 5d d4 ; pen to (y, x)
 c7c8: d6 37 ; include template
@@ -635,8 +720,11 @@ c813: d5 02 6e 5c 7c ; place doorway (type, x, y, z)
 c818: e7 01 1c 7c 5c 6e ; room exit
 c81e: e7 02 1f 34 5c 36 ; room exit
 c824: e7 03 20 6e 5c 7a ; room exit
+```
 
-TEMPLATE 1e
+## TEMPLATE 1e
+[![Template 1e](templates/template_1E.png)]
+```
 c82a: c4 ; line start = pen
 c82b: d7 37 ; include template (save/restore state)
 c82d: e1 29 ; flag 10: relative coords
@@ -646,15 +734,21 @@ c834: 09 00 ; pen to (y, x)
 c836: e4 28 ; flag 20: pen down
 c838: 09 00 ; pen to (y, x)
 c83a: dc ff 0e ; textured flood fill
+```
 
-TEMPLATE 1f
+## TEMPLATE 1f
+[![Template 1f](templates/template_1F.png)]
+```
 c83d: d6 3a ; include template
 c83f: 1e 64 ; pen to (y, x)
 c841: dc 29 ; textured flood fill
 c843: d5 01 30 5c 32 ; place doorway (type, x, y, z)
 c848: e7 01 1d b8 5c 66 ; room exit
+```
 
-TEMPLATE 20
+## TEMPLATE 20
+[![Template 20](templates/template_20.png)]
+```
 c84e: 77 2d ; pen to (y, x)
 c850: e5 29 ; flag 40: mirror x
 c852: d6 37 ; include template
@@ -698,15 +792,21 @@ c8b1: ee 05 23 ff 9c 1f ; evaluate expression
 c8b7: ee 05 2e ff 34 1f ; evaluate expression
 c8bd: ee 04 2f 2d 1f ; evaluate expression
 c8c2: d6 ff 55 ; include template
+```
 
-TEMPLATE 21
+## TEMPLATE 21
+[![Template 21](templates/template_21.png)]
+```
 c8c5: d6 3a ; include template
 c8c7: 32 80 ; pen to (y, x)
 c8c9: dc 2c ; textured flood fill
 c8cb: d5 03 64 5c 30 ; place doorway (type, x, y, z)
 c8d0: e7 01 20 64 74 b4 ; room exit
+```
 
-TEMPLATE 22
+## TEMPLATE 22
+[![Template 22](templates/template_22.png)]
+```
 c8d6: d6 ff 73 ; include template
 c8d9: da 0a 14 ; move line start
 c8dc: 01 01 ; pen to (y, x)
@@ -725,8 +825,11 @@ c8f4: e2 28 ; flag 04: chain lines
 c8f6: e4 28 ; flag 20: pen down
 c8f8: b8 32 ; pen to (y, x)
 c8fa: d6 37 ; include template
+```
 
-TEMPLATE 23
+## TEMPLATE 23
+[![Template 23](templates/template_23.png)]
+```
 c8fc: d0 28 ; set attribute
 c8fe: 56 49 ; pen to (y, x)
 c900: d7 fe 22 00 ; include template (save/restore state)
@@ -743,8 +846,11 @@ c917: dc 29 ; textured flood fill
 c919: 00 00 ; pen to (y, x)
 c91b: dc 35 ; textured flood fill
 c91d: c2 0c ; set room bounding box (preset)
+```
 
-TEMPLATE 24
+## TEMPLATE 24
+[![Template 24](templates/template_24.png)]
+```
 c91f: d6 fe 13 00 ; include template
 c923: 83 34 ; pen to (y, x)
 c925: dc 29 ; textured flood fill
@@ -755,8 +861,11 @@ c930: e7 01 1b 38 5c 62 ; room exit
 c936: e7 02 0f 76 5c 6c ; room exit
 c93c: d5 03 64 5c 32 ; place doorway (type, x, y, z)
 c941: e7 03 26 32 5c ac ; room exit
+```
 
-TEMPLATE 25
+## TEMPLATE 25
+[![Template 25](templates/template_25.png)]
+```
 c947: e2 29 ; flag 04: chain lines
 c949: e4 29 ; flag 20: pen down
 c94b: da 00 80 ; move line start
@@ -785,8 +894,11 @@ c983: c1 20 00 40 32 32 ; place object (type, flags, x, y, z)
 c989: c1 20 00 32 32 32 ; place object (type, flags, x, y, z)
 c98f: d5 02 40 5c ae ; place doorway (type, x, y, z)
 c994: e9 fe 24 9d ff 07 ; POKE byte
+```
 
-TEMPLATE 26
+## TEMPLATE 26
+[![Template 26](templates/template_26.png)]
+```
 c99a: d5 00 ac 5c 78 ; place doorway (type, x, y, z)
 c99f: 61 b7 ; pen to (y, x)
 c9a1: d6 37 ; include template
@@ -808,8 +920,11 @@ c9c3: dc 36 ; textured flood fill
 c9c5: e7 01 27 5e 6e 98 ; room exit
 c9cb: e7 02 24 66 5c 36 ; room exit
 c9d1: d6 ff 57 ; include template
+```
 
-TEMPLATE 27
+## TEMPLATE 27
+[![Template 27](templates/template_27.png)]
+```
 c9d4: 69 62 ; pen to (y, x)
 c9d6: d6 37 ; include template
 c9d8: 43 52 ; pen to (y, x)
@@ -852,8 +967,11 @@ ca3b: ee 05 23 ff 86 1f ; evaluate expression
 ca41: ee 05 2e ff 34 1f ; evaluate expression
 ca47: ee 04 2f 2d 1f ; evaluate expression
 ca4c: d6 ff 55 ; include template
+```
 
-TEMPLATE 28
+## TEMPLATE 28
+[![Template 28](templates/template_28.png)]
+```
 ca4f: d7 fe 0c 00 ; include template (save/restore state)
 ca53: d1 24 ; set drawing flags (C024)
 ca55: da 28 32 ; move line start
@@ -873,8 +991,11 @@ ca72: dc 35 ; textured flood fill
 ca74: d5 01 30 5c 66 ; place doorway (type, x, y, z)
 ca79: e7 01 27 78 6e 98 ; room exit
 ca7f: c1 1c 00 bc 82 60 ; place object (type, flags, x, y, z)
+```
 
-TEMPLATE 29
+## TEMPLATE 29
+[![Template 29](templates/template_29.png)]
+```
 ca85: 4e 46 ; pen to (y, x)
 ca87: e5 29 ; flag 40: mirror x
 ca89: d7 2a ; include template (save/restore state)
@@ -920,8 +1041,11 @@ cae6: ee 05 23 ff 96 1f ; evaluate expression
 caec: ee 05 2e ff 36 1f ; evaluate expression
 caf2: ee 04 2f 2a 1f ; evaluate expression
 caf7: d6 ff 55 ; include template
+```
 
-TEMPLATE 2a
+## TEMPLATE 2a
+[![Template 2a](templates/template_2A.png)]
+```
 cafa: e4 29 ; flag 20: pen down
 cafc: e2 29 ; flag 04: chain lines
 cafe: da 4f 8f ; move line start
@@ -944,21 +1068,33 @@ cb20: dc 29 ; textured flood fill
 cb22: 4e 8a ; pen to (y, x)
 cb24: dc ff 0c ; textured flood fill
 cb27: c2 19 ; set room bounding box (preset)
+```
 
-TEMPLATE 2b
+## TEMPLATE 2b
+[![Template 2b](templates/template_2B.png)]
+```
 cb29: d6 ff 2a ; include template
+```
 
-TEMPLATE 2c
+## TEMPLATE 2c
+[![Template 2c](templates/template_2C.png)]
+```
 cb2c: d6 ff 2a ; include template
 cb2f: d5 01 64 5c 84 ; place doorway (type, x, y, z)
 cb34: e7 01 2f 64 5c 78 ; room exit
+```
 
-TEMPLATE 2d
+## TEMPLATE 2d
+[![Template 2d](templates/template_2D.png)]
+```
 cb3a: d6 ff 2a ; include template
 cb3d: d5 01 64 5c 84 ; place doorway (type, x, y, z)
 cb42: e7 01 2f 64 5c 44 ; room exit
+```
 
-TEMPLATE 2e
+## TEMPLATE 2e
+[![Template 2e](templates/template_2E.png)]
+```
 cb48: d1 24 ; set drawing flags (C024)
 cb4a: da 1d bb ; move line start
 cb4d: 00 80 ; pen to (y, x)
@@ -973,8 +1109,11 @@ cb5d: 5f 17 ; pen to (y, x)
 cb5f: 34 17 ; pen to (y, x)
 cb61: d1 00 ; set drawing flags (C024)
 cb63: c2 1a ; set room bounding box (preset)
+```
 
-TEMPLATE 2f
+## TEMPLATE 2f
+[![Template 2f](templates/template_2F.png)]
+```
 cb65: d6 ff 2e ; include template
 cb68: 40 73 ; pen to (y, x)
 cb6a: d6 37 ; include template
@@ -1002,8 +1141,11 @@ cb9f: d5 00 68 5c 44 ; place doorway (type, x, y, z)
 cba4: d5 00 68 5c 78 ; place doorway (type, x, y, z)
 cba9: e7 02 2d 68 5c 84 ; room exit
 cbaf: e7 03 2c 68 5c 84 ; room exit
+```
 
-TEMPLATE 30
+## TEMPLATE 30
+[![Template 30](templates/template_30.png)]
+```
 cbb5: d1 24 ; set drawing flags (C024)
 cbb7: da 5e 51 ; move line start
 cbba: 45 1e ; pen to (y, x)
@@ -1020,8 +1162,11 @@ cbd1: c2 1b ; set room bounding box (preset)
 cbd3: c1 1b 00 32 46 2c ; place object (type, flags, x, y, z)
 cbd9: c1 1b 00 32 6e 2c ; place object (type, flags, x, y, z)
 cbdf: c1 1b 00 32 5a 2c ; place object (type, flags, x, y, z)
+```
 
-TEMPLATE 31
+## TEMPLATE 31
+[![Template 31](templates/template_31.png)]
+```
 cbe5: d6 ff 30 ; include template
 cbe8: 83 58 ; pen to (y, x)
 cbea: d7 ff 18 ; include template (save/restore state)
@@ -1070,8 +1215,11 @@ cc5c: e7 02 32 64 5c 36 ; room exit
 cc62: e7 03 36 36 5c 6c ; room exit
 cc68: e7 04 35 36 5c 3e ; room exit
 cc6e: e7 05 38 64 5c 36 ; room exit
+```
 
-TEMPLATE 32
+## TEMPLATE 32
+[![Template 32](templates/template_32.png)]
+```
 cc74: 5c 2c ; pen to (y, x)
 cc76: d7 ff 15 ; include template (save/restore state)
 cc79: d6 ff 13 ; include template
@@ -1082,8 +1230,11 @@ cc82: dc ff 0a ; textured flood fill
 cc85: d5 03 64 5c 30 ; place doorway (type, x, y, z)
 cc8a: e7 01 33 6e 86 36 ; room exit
 cc90: e7 02 31 62 5c a4 ; room exit
+```
 
-TEMPLATE 33
+## TEMPLATE 33
+[![Template 33](templates/template_33.png)]
+```
 cc96: d7 ff 2e ; include template (save/restore state)
 cc99: d1 24 ; set drawing flags (C024)
 cc9b: da 5f 17 ; move line start
@@ -1115,8 +1266,11 @@ ccd8: d5 01 34 86 98 ; place doorway (type, x, y, z)
 ccdd: d5 03 6e 86 30 ; place doorway (type, x, y, z)
 cce2: e7 01 1b c8 6a 68 ; room exit
 cce8: e7 02 32 64 5c b0 ; room exit
+```
 
-TEMPLATE 34
+## TEMPLATE 34
+[![Template 34](templates/template_34.png)]
+```
 ccee: d6 ff 30 ; include template
 ccf1: 51 75 ; pen to (y, x)
 ccf3: d7 2c ; include template (save/restore state)
@@ -1143,8 +1297,11 @@ cd32: d5 00 98 7a 6e ; place doorway (type, x, y, z)
 cd37: d5 00 98 7a 8c ; place doorway (type, x, y, z)
 cd3c: e7 02 47 60 5c a0 ; room exit
 cd42: e7 03 44 38 5c 8c ; room exit
+```
 
-TEMPLATE 35
+## TEMPLATE 35
+[![Template 35](templates/template_35.png)]
+```
 cd48: d7 ff 2e ; include template (save/restore state)
 cd4b: 3c 64 ; pen to (y, x)
 cd4d: dc 3a ; textured flood fill
@@ -1154,16 +1311,22 @@ cd54: 50 a0 ; pen to (y, x)
 cd56: dc 36 ; textured flood fill
 cd58: d5 01 30 5c 3e ; place doorway (type, x, y, z)
 cd5d: e7 01 31 98 7e 8c ; room exit
+```
 
-TEMPLATE 36
+## TEMPLATE 36
+[![Template 36](templates/template_36.png)]
+```
 cd63: d6 ff 0e ; include template
 cd66: 9d e0 ; pen to (y, x)
 cd68: dc ff 0a ; textured flood fill
 cd6b: d5 01 30 5c 6a ; place doorway (type, x, y, z)
 cd70: e7 01 37 4e 5c 6e ; room exit
 cd76: e7 02 31 98 7e 74 ; room exit
+```
 
-TEMPLATE 37
+## TEMPLATE 37
+[![Template 37](templates/template_37.png)]
+```
 cd7c: d6 ff 30 ; include template
 cd7f: d1 24 ; set drawing flags (C024)
 cd81: da 62 92 ; move line start
@@ -1188,8 +1351,11 @@ cda8: dc 36 ; textured flood fill
 cdaa: c1 20 00 7a 54 68 ; place object (type, flags, x, y, z)
 cdb0: d5 01 44 5c 70 ; place doorway (type, x, y, z)
 cdb5: e7 01 36 c8 6a 66 ; room exit
+```
 
-TEMPLATE 38
+## TEMPLATE 38
+[![Template 38](templates/template_38.png)]
+```
 cdbb: 5c 2c ; pen to (y, x)
 cdbd: d7 ff 15 ; include template (save/restore state)
 cdc0: d6 ff 13 ; include template
@@ -1200,8 +1366,11 @@ cdc9: dc 3a ; textured flood fill
 cdcb: e7 01 39 64 5c 36 ; room exit
 cdd1: d5 03 64 5c 30 ; place doorway (type, x, y, z)
 cdd6: e7 02 31 80 7e a0 ; room exit
+```
 
-TEMPLATE 39
+## TEMPLATE 39
+[![Template 39](templates/template_39.png)]
+```
 cddc: d6 ff 13 ; include template
 cddf: 65 30 ; pen to (y, x)
 cde1: dc 29 ; textured flood fill
@@ -1210,8 +1379,11 @@ cde5: dc 3a ; textured flood fill
 cde7: e7 01 3a 78 5c 60 ; room exit
 cded: d5 03 64 5c 30 ; place doorway (type, x, y, z)
 cdf2: e7 02 38 64 5c b0 ; room exit
+```
 
-TEMPLATE 3a
+## TEMPLATE 3a
+[![Template 3a](templates/template_3A.png)]
+```
 cdf8: d6 ff 0e ; include template
 cdfb: 9d e3 ; pen to (y, x)
 cdfd: dc 29 ; textured flood fill
@@ -1220,8 +1392,11 @@ ce05: d5 01 30 5c 68 ; place doorway (type, x, y, z)
 ce0a: e7 02 41 6e 5c 36 ; room exit
 ce10: d5 03 78 5c 5c ; place doorway (type, x, y, z)
 ce15: e7 03 39 64 5c b0 ; room exit
+```
 
-TEMPLATE 3b
+## TEMPLATE 3b
+[![Template 3b](templates/template_3B.png)]
+```
 ce1b: d6 ff 13 ; include template
 ce1e: 62 2c ; pen to (y, x)
 ce20: dc 39 ; textured flood fill
@@ -1230,8 +1405,11 @@ ce24: dc 29 ; textured flood fill
 ce26: e7 01 3d 4e 5c 6a ; room exit
 ce2c: d5 01 5c 5c 3c ; place doorway (type, x, y, z)
 ce31: e7 02 3a c8 6a 66 ; room exit
+```
 
-TEMPLATE 3c
+## TEMPLATE 3c
+[![Template 3c](templates/template_3C.png)]
+```
 ce37: d6 ff 30 ; include template
 ce3a: e4 29 ; flag 20: pen down
 ce3c: e2 29 ; flag 04: chain lines
@@ -1249,8 +1427,11 @@ ce53: 85 71 ; pen to (y, x)
 ce55: 76 52 ; pen to (y, x)
 ce57: d1 00 ; set drawing flags (C024)
 ce59: c1 20 00 7c 46 68 ; place object (type, flags, x, y, z)
+```
 
-TEMPLATE 3d
+## TEMPLATE 3d
+[![Template 3d](templates/template_3D.png)]
+```
 ce5f: d6 ff 3c ; include template
 ce62: 75 8e ; pen to (y, x)
 ce64: d7 ff 1e ; include template (save/restore state)
@@ -1268,8 +1449,11 @@ ce7b: d5 00 98 70 8e ; place doorway (type, x, y, z)
 ce80: d5 03 4e 5c 66 ; place doorway (type, x, y, z)
 ce85: e7 01 3e 36 5c 6c ; room exit
 ce8b: e7 02 3b 64 5c b0 ; room exit
+```
 
-TEMPLATE 3e
+## TEMPLATE 3e
+[![Template 3e](templates/template_3E.png)]
+```
 ce91: a0 9f ; pen to (y, x)
 ce93: d7 36 ; include template (save/restore state)
 ce95: d6 ff 25 ; include template
@@ -1287,8 +1471,11 @@ ceb2: d5 01 30 5c 6a ; place doorway (type, x, y, z)
 ceb7: e7 01 40 68 5c 84 ; room exit
 cebd: e7 02 3f 36 5c 34 ; room exit
 cec3: e7 03 3d 98 70 8e ; room exit
+```
 
-TEMPLATE 3f
+## TEMPLATE 3f
+[![Template 3f](templates/template_3F.png)]
+```
 cec9: 85 56 ; pen to (y, x)
 cecb: d7 ff 1e ; include template (save/restore state)
 cece: d6 ff 0b ; include template
@@ -1296,13 +1483,19 @@ ced1: e7 01 40 68 5c 84 ; room exit
 ced7: d5 01 30 5c 34 ; place doorway (type, x, y, z)
 cedc: e7 02 3e aa 5c 80 ; room exit
 cee2: c1 1d 00 5e 78 5a ; place object (type, flags, x, y, z)
+```
 
-TEMPLATE 40
+## TEMPLATE 40
+[![Template 40](templates/template_40.png)]
+```
 cee8: d7 ff 2a ; include template (save/restore state)
 ceeb: d5 01 64 5c 84 ; place doorway (type, x, y, z)
 cef0: e7 01 3f 6c 90 9a ; room exit
+```
 
-TEMPLATE 41
+## TEMPLATE 41
+[![Template 41](templates/template_41.png)]
+```
 cef6: 2d c0 ; pen to (y, x)
 cef8: d7 ff 1e ; include template (save/restore state)
 cefb: 5d 2b ; pen to (y, x)
@@ -1313,8 +1506,11 @@ cf05: dc 29 ; textured flood fill
 cf07: e7 01 42 4e 5c 6a ; room exit
 cf0d: d5 00 7c 5c 3e ; place doorway (type, x, y, z)
 cf12: e7 02 3a 36 5c 68 ; room exit
+```
 
-TEMPLATE 42
+## TEMPLATE 42
+[![Template 42](templates/template_42.png)]
+```
 cf18: 77 58 ; pen to (y, x)
 cf1a: d7 ff 18 ; include template (save/restore state)
 cf1d: d6 ff 3c ; include template
@@ -1332,13 +1528,19 @@ cf34: d5 03 4e 5c 66 ; place doorway (type, x, y, z)
 cf39: e7 01 41 64 5c b0 ; room exit
 cf3f: d5 02 80 70 a8 ; place doorway (type, x, y, z)
 cf44: e7 02 43 66 5c 7c ; room exit
+```
 
-TEMPLATE 43
+## TEMPLATE 43
+[![Template 43](templates/template_43.png)]
+```
 cf4a: d6 ff 2a ; include template
 cf4d: d5 03 66 5c 78 ; place doorway (type, x, y, z)
 cf52: e7 01 42 80 70 a4 ; room exit
+```
 
-TEMPLATE 44
+## TEMPLATE 44
+[![Template 44](templates/template_44.png)]
+```
 cf58: d6 ff 45 ; include template
 cf5b: 86 de ; pen to (y, x)
 cf5d: d7 ff 1e ; include template (save/restore state)
@@ -1365,8 +1567,11 @@ cf8a: dc 2c ; textured flood fill
 cf8c: e7 01 34 9a 7a 8c ; room exit
 cf92: d5 00 e4 5c 8c ; place doorway (type, x, y, z)
 cf97: e7 02 46 38 5c 8c ; room exit
+```
 
-TEMPLATE 45
+## TEMPLATE 45
+[![Template 45](templates/template_45.png)]
+```
 cf9d: c1 1b 00 a6 32 82 ; place object (type, flags, x, y, z)
 cfa3: c1 1d 00 32 32 8c ; place object (type, flags, x, y, z)
 cfa9: d1 24 ; set drawing flags (C024)
@@ -1400,16 +1605,22 @@ cfe6: dc 2c ; textured flood fill
 cfe8: c2 1d ; set room bounding box (preset)
 cfea: d5 01 36 5c 8c ; place doorway (type, x, y, z)
 cfef: e9 fe 24 9d ff 07 ; POKE byte
+```
 
-TEMPLATE 46
+## TEMPLATE 46
+[![Template 46](templates/template_46.png)]
+```
 cff5: d6 ff 45 ; include template
 cff8: be dc ; pen to (y, x)
 cffa: dc 36 ; textured flood fill
 cffc: b4 fd ; pen to (y, x)
 cffe: dc 2b ; textured flood fill
 d000: e7 01 44 e0 5c 8c ; room exit
+```
 
-TEMPLATE 47
+## TEMPLATE 47
+[![Template 47](templates/template_47.png)]
+```
 d006: d7 ff 13 ; include template (save/restore state)
 d009: e4 29 ; flag 20: pen down
 d00b: da 6b 35 ; move line start
@@ -1424,8 +1635,11 @@ d01f: e7 01 34 90 80 6e ; room exit
 d025: d5 03 64 5c 30 ; place doorway (type, x, y, z)
 d02a: e7 02 48 32 5c aa ; room exit
 d030: e9 fe ca 9d ff 01 ; POKE byte
+```
 
-TEMPLATE 48
+## TEMPLATE 48
+[![Template 48](templates/template_48.png)]
+```
 d036: d6 ff 25 ; include template
 d039: 48 ea ; pen to (y, x)
 d03b: d7 ff 1e ; include template (save/restore state)
@@ -1445,16 +1659,22 @@ d057: e7 01 47 64 5c 36 ; room exit
 d05d: d5 00 ac 5c 40 ; place doorway (type, x, y, z)
 d062: e7 02 49 36 5c 64 ; room exit
 d068: d6 ff 57 ; include template
+```
 
-TEMPLATE 49
+## TEMPLATE 49
+[![Template 49](templates/template_49.png)]
+```
 d06b: d6 ff 0b ; include template
 d06e: 85 56 ; pen to (y, x)
 d070: d7 ff 1e ; include template (save/restore state)
 d073: d5 01 30 5c 64 ; place doorway (type, x, y, z)
 d078: e7 01 4a 5c 5c a6 ; room exit
 d07e: e7 02 48 a8 5c 42 ; room exit
+```
 
-TEMPLATE 4a
+## TEMPLATE 4a
+[![Template 4a](templates/template_4A.png)]
+```
 d084: e5 29 ; flag 40: mirror x
 d086: d7 ff 0c ; include template (save/restore state)
 d089: d1 20 ; set drawing flags (C024)
@@ -1477,8 +1697,11 @@ d0b2: e7 01 49 68 90 9a ; room exit
 d0b8: e7 02 4b 3c 5c aa ; room exit
 d0be: e9 fe ca 9d ff 02 ; POKE byte
 d0c4: c2 11 ; set room bounding box (preset)
+```
 
-TEMPLATE 4b
+## TEMPLATE 4b
+[![Template 4b](templates/template_4B.png)]
+```
 d0c6: 40 63 ; pen to (y, x)
 d0c8: d7 2c ; include template (save/restore state)
 d0ca: d1 24 ; set drawing flags (C024)
@@ -1568,8 +1791,11 @@ d1a2: ee 05 2f ff 08 1f ; evaluate expression
 d1a8: d6 ff 54 ; include template
 d1ab: e7 01 4e 7c 52 80 ; room exit
 d1b1: e7 02 4a 64 5c 36 ; room exit
+```
 
-TEMPLATE 4c
+## TEMPLATE 4c
+[![Template 4c](templates/template_4C.png)]
+```
 d1b7: d6 ff 73 ; include template
 d1ba: da 01 01 ; move line start
 d1bd: 20 01 ; pen to (y, x)
@@ -1583,8 +1809,11 @@ d1cc: e4 28 ; flag 20: pen down
 d1ce: e2 28 ; flag 04: chain lines
 d1d0: 03 fd ; pen to (y, x)
 d1d2: dc ff 0e ; textured flood fill
+```
 
-TEMPLATE 4d
+## TEMPLATE 4d
+[![Template 4d](templates/template_4D.png)]
+```
 d1d5: d7 ff 2e ; include template (save/restore state)
 d1d8: 6f 76 ; pen to (y, x)
 d1da: d7 2b ; include template (save/restore state)
@@ -1637,8 +1866,11 @@ d258: ee 05 23 ff 6e 1f ; evaluate expression
 d25e: ee 05 2e ff 60 1f ; evaluate expression
 d264: ee 04 2f 2c 1f ; evaluate expression
 d269: d6 ff 56 ; include template
+```
 
-TEMPLATE 4e
+## TEMPLATE 4e
+[![Template 4e](templates/template_4E.png)]
+```
 d26c: d1 24 ; set drawing flags (C024)
 d26e: da 6f 54 ; move line start
 d271: 47 a4 ; pen to (y, x)
@@ -1664,8 +1896,11 @@ d29b: d5 03 7a 5c 66 ; place doorway (type, x, y, z)
 d2a0: e7 01 4b 76 5c 64 ; room exit
 d2a6: e7 02 4d 5a 5c 96 ; room exit
 d2ac: e9 fe ca 9d ff 03 ; POKE byte
+```
 
-TEMPLATE 4f
+## TEMPLATE 4f
+[![Template 4f](templates/template_4F.png)]
+```
 d2b2: 26 76 ; pen to (y, x)
 d2b4: d7 2b ; include template (save/restore state)
 d2b6: 51 5f ; pen to (y, x)
@@ -1748,8 +1983,11 @@ d38d: ee 05 23 ff 7c 1f ; evaluate expression
 d393: ee 05 2e ff 46 1f ; evaluate expression
 d399: ee 04 2f 2a 1f ; evaluate expression
 d39e: d6 ff 55 ; include template
+```
 
-TEMPLATE 50
+## TEMPLATE 50
+[![Template 50](templates/template_50.png)]
+```
 d3a1: 1f 4d ; pen to (y, x)
 d3a3: d7 2b ; include template (save/restore state)
 d3a5: 48 7b ; pen to (y, x)
@@ -1812,8 +2050,11 @@ d44e: ee 05 23 ff 7c 1f ; evaluate expression
 d454: ee 05 2e ff 4e 1f ; evaluate expression
 d45a: ee 04 2f 2b 1f ; evaluate expression
 d45f: d6 ff 54 ; include template
+```
 
-TEMPLATE 51
+## TEMPLATE 51
+[![Template 51](templates/template_51.png)]
+```
 d462: 3b 4e ; pen to (y, x)
 d464: e5 29 ; flag 40: mirror x
 d466: d7 2b ; include template (save/restore state)
@@ -1868,8 +2109,11 @@ d4f2: ee 05 23 ff 82 1f ; evaluate expression
 d4f8: ee 05 2e ff 36 1f ; evaluate expression
 d4fe: ee 04 2f 2c 1f ; evaluate expression
 d503: d6 ff 55 ; include template
+```
 
-TEMPLATE 52
+## TEMPLATE 52
+[![Template 52](templates/template_52.png)]
+```
 d506: d0 28 ; set attribute
 d508: 5e 9c ; pen to (y, x)
 d50a: e5 29 ; flag 40: mirror x
@@ -1879,8 +2123,11 @@ d511: 63 76 ; pen to (y, x)
 d513: dc ff 0a ; textured flood fill
 d516: 8b 78 ; pen to (y, x)
 d518: dc 2a ; textured flood fill
+```
 
-TEMPLATE 53
+## TEMPLATE 53
+[![Template 53](templates/template_53.png)]
+```
 d51a: d6 ff 73 ; include template
 d51d: da 00 fe ; move line start
 d520: be fb ; pen to (y, x)
@@ -1895,8 +2142,10 @@ d531: e2 28 ; flag 04: chain lines
 d533: e4 28 ; flag 20: pen down
 d535: be 02 ; pen to (y, x)
 d537: dc 2b ; textured flood fill
+```
 
-TEMPLATE 54
+## TEMPLATE 54
+```
 d539: c1 1b 03 00 00 00 ; place object (type, flags, x, y, z)
 d53f: ee 07 23 23 01 ff 04 1f ; evaluate expression
 d547: ee 07 2e 2e 01 ff 04 1f ; evaluate expression
@@ -1906,8 +2155,10 @@ d559: ce 2f ; decrement variable
 d55b: ef 2f 0d 28 01 ; conditional skip
 d560: fd ; loop back to start of template
 d561: c3 00 00 00 ; set object position
+```
 
-TEMPLATE 55
+## TEMPLATE 55
+```
 d565: c1 1b 02 00 00 00 ; place object (type, flags, x, y, z)
 d56b: ee 07 23 23 01 ff 04 1f ; evaluate expression
 d573: ee 07 2e 2e 01 ff 04 1f ; evaluate expression
@@ -1917,8 +2168,10 @@ d585: ce 2f ; decrement variable
 d587: ef 2f 0d 28 01 ; conditional skip
 d58c: fd ; loop back to start of template
 d58d: c3 00 00 00 ; set object position
+```
 
-TEMPLATE 56
+## TEMPLATE 56
+```
 d591: c1 20 03 00 00 00 ; place object (type, flags, x, y, z)
 d597: ee 07 23 23 01 ff 04 1f ; evaluate expression
 d59f: ee 07 2e 2e 01 ff 04 1f ; evaluate expression
@@ -1928,8 +2181,11 @@ d5b1: ce 2f ; decrement variable
 d5b3: ef 2f 0d 28 01 ; conditional skip
 d5b8: fd ; loop back to start of template
 d5b9: c3 00 00 00 ; set object position
+```
 
-TEMPLATE 57
+## TEMPLATE 57
+[![Template 57](templates/template_57.png)]
+```
 d5bd: c1 1d 00 4c 38 a2 ; place object (type, flags, x, y, z)
 d5c3: c1 1d 00 4c 38 92 ; place object (type, flags, x, y, z)
 d5c9: c1 1d 00 4c 38 82 ; place object (type, flags, x, y, z)
@@ -1938,32 +2194,35 @@ d5d5: c1 1d 00 4c 38 62 ; place object (type, flags, x, y, z)
 d5db: c1 1d 00 4c 38 52 ; place object (type, flags, x, y, z)
 d5e1: c1 1d 00 4c 38 42 ; place object (type, flags, x, y, z)
 d5e7: c1 1d 00 4c 38 32 ; place object (type, flags, x, y, z)
+```
 
-TEMPLATE 58 (empty)
+## TEMPLATE 58 (empty)
 
-TEMPLATE 59 (empty)
+## TEMPLATE 59 (empty)
 
-TEMPLATE 5a (empty)
+## TEMPLATE 5a (empty)
 
-TEMPLATE 5b (empty)
+## TEMPLATE 5b (empty)
 
-TEMPLATE 5c (empty)
+## TEMPLATE 5c (empty)
 
-TEMPLATE 5d (empty)
+## TEMPLATE 5d (empty)
 
-TEMPLATE 5e (empty)
+## TEMPLATE 5e (empty)
 
-TEMPLATE 5f (empty)
+## TEMPLATE 5f (empty)
 
-TEMPLATE 60 (empty)
+## TEMPLATE 60 (empty)
 
-TEMPLATE 61 (empty)
+## TEMPLATE 61 (empty)
 
-TEMPLATE 62 (empty)
+## TEMPLATE 62 (empty)
 
-TEMPLATE 63 (empty)
+## TEMPLATE 63 (empty)
 
-TEMPLATE 64
+## TEMPLATE 64
+[![Template 64](templates/template_64.png)]
+```
 d5ed: 05 25 ; pen to (y, x)
 d5ef: c0 ; draw line from line start to pen
 d5f0: 38 4a ; pen to (y, x)
@@ -2214,22 +2473,31 @@ d7d5: ff ; UNKNOWN
 d7d6: ff ; UNKNOWN
 d7d7: ff ; UNKNOWN
 d7d8: ff ; UNKNOWN
+```
 
-TEMPLATE 65 (empty)
+## TEMPLATE 65 (empty)
+```
+```
 
-TEMPLATE 66
+## TEMPLATE 66
+[![Template 66](templates/template_66.png)]
+```
 d7d9: d6 ff 71 ; include template
 d7dc: ee 07 23 23 01 ff 20 1f ; evaluate expression
 d7e4: ef 23 12 ff ff 01 ; conditional skip
 d7ea: fd ; loop back to start of template
+```
 
-TEMPLATE 67
+## TEMPLATE 67
+```
 d7eb: ee 0d 24 09 ff fe 28 05 ff 1f 07 ff 1f 1f ; evaluate expression
 d7f9: ef 24 0d 28 01 ; conditional skip
 d7fe: fd ; loop back to start of template
 d7ff: ec 0f 30 20 54 4f 20 45 4e 44 20 47 41 4d 45 1f ; print text "0 TO END GAME"
+```
 
-TEMPLATE 68
+## TEMPLATE 68
+```
 d80f: cf 22 ; increment variable
 d811: dd 22 ; set border colour
 d813: dd 22 ; set border colour
@@ -2251,27 +2519,39 @@ d870: dd 28 ; set border colour
 d872: ef 22 0d ff 01 01 ; conditional skip
 d878: cd ; return from template inclusion
 d879: ee 06 24 fe e8 03 1f ; evaluate expression
+```
 
-TEMPLATE 69 (empty)
+## TEMPLATE 69 (empty)
 
-TEMPLATE 6a
+## TEMPLATE 6a
+```
 d880: ec 03 42 1f ; print text "B"
 d884: d6 ff 6b ; include template
+```
 
-TEMPLATE 6b
+## TEMPLATE 6b
+```
 d887: ec 08 4c 4f 43 4b 45 44 1f ; print text "LOCKED"
+```
 
-TEMPLATE 6c
+## TEMPLATE 6c
+```
 d890: ec 0b 54 4f 4f 20 48 45 41 56 59 1f ; print text "TOO HEAVY"
+```
 
-TEMPLATE 6d
+## TEMPLATE 6d
+```
 d89c: f9 ff c8 ff 64 ; beep (duration, pitch)
 d8a1: d6 ff 8c ; include template
+```
 
-TEMPLATE 6e
+## TEMPLATE 6e
+```
 d8a4: d6 ff 6f ; include template
+```
 
-TEMPLATE 6f
+## TEMPLATE 6f
+```
 d8a7: d6 ff 8c ; include template
 d8aa: ed 2d ff 60 ff bf ff 14 2b 33 ; define window
 d8b4: de 2d ; select window
@@ -2290,8 +2570,10 @@ d8f4: ef 22 0d 28 03 ; conditional skip
 d8f9: d6 ff 70 ; include template
 d8fc: ee 07 23 23 01 ff 18 1f ; evaluate expression
 d904: d6 ff 71 ; include template
+```
 
-TEMPLATE 70
+## TEMPLATE 70
+```
 d907: d2 00 ; set drawing flags (C023)
 d909: d1 00 ; set drawing flags (C024)
 d90b: fc ff bf 23 ; move line start (y, x operands)
@@ -2304,8 +2586,11 @@ d929: ee 05 22 0a 22 1f ; evaluate expression
 d92f: ef 2e 11 ff 18 06 ; conditional skip
 d935: ee 05 2e ff 18 1f ; evaluate expression
 d93b: f0 22 2e 2f ; draw sprite at cursor (address, width, height)
+```
 
-TEMPLATE 71
+## TEMPLATE 71
+[![Template 71](templates/template_71.png)]
+```
 d93f: e9 fe 2c c0 ff 08 ; POKE byte
 d945: fb ff bf 23 ; line to (y, x operands)
 d949: ec 03 23 1f ; print text "#"
@@ -2314,18 +2599,24 @@ d951: ec 03 24 1f ; print text "$"
 d955: fb ff af 23 ; line to (y, x operands)
 d959: ec 03 25 1f ; print text "%"
 d95d: e9 fe 2c c0 ff 05 ; POKE byte
+```
 
-TEMPLATE 72 (empty)
+## TEMPLATE 72 (empty)
 
-TEMPLATE 73
+## TEMPLATE 73
+```
 d963: c4 ; line start = pen
 d964: e1 29 ; flag 10: relative coords
 d966: e2 29 ; flag 04: chain lines
 d968: e4 29 ; flag 20: pen down
+```
 
-TEMPLATE 74 (empty)
+## TEMPLATE 74 (empty)
+```
+```
 
-TEMPLATE 75
+## TEMPLATE 75
+```
 d96a: ee 05 29 ff 01 1f ; evaluate expression
 d970: ee 05 2a ff 02 1f ; evaluate expression
 d976: ee 05 2b ff 03 1f ; evaluate expression
@@ -2358,8 +2649,10 @@ da1c: db fe 07 5b 28 ; POKE word
 da21: db fe 09 5b 28 ; POKE word
 da26: db fe 0c 5b fe a4 9d ; POKE word
 da2d: e9 fe 0e 5b ff 07 ; POKE byte
+```
 
-TEMPLATE 76
+## TEMPLATE 76
+```
 da33: de 2b ; select window
 da35: d8 fe f2 7b ; call machine code
 da39: de 29 ; select window
@@ -2396,8 +2689,10 @@ dac4: ef 21 0f ff 52 01 ; conditional skip
 daca: cd ; return from template inclusion
 dacb: d6 ff 77 ; include template
 dace: fd ; loop back to start of template
+```
 
-TEMPLATE 77
+## TEMPLATE 77
+```
 dacf: e9 fe 24 9d 28 ; POKE byte
 dad4: ee 05 22 ff 7d 1f ; evaluate expression
 dada: f9 ff 05 fe 58 02 ; beep (duration, pitch)
@@ -2444,8 +2739,10 @@ db8b: de 29 ; select window
 db8d: da a7 ff ; move line start
 db90: a7 10 ; pen to (y, x)
 db92: c0 ; draw line from line start to pen
+```
 
-TEMPLATE 78
+## TEMPLATE 78
+```
 db93: cf 23 ; increment variable
 db95: cf 23 ; increment variable
 db97: ef 23 11 fe 99 7b 01 ; conditional skip
@@ -2456,8 +2753,10 @@ dbaa: fd ; loop back to start of template
 dbab: db 23 2e ; POKE word
 dbae: ee 07 2e 2e 01 ff 14 1f ; evaluate expression
 dbb6: fd ; loop back to start of template
+```
 
-TEMPLATE 79
+## TEMPLATE 79
+```
 dbb7: f9 ff 0c ff 0a ; beep (duration, pitch)
 dbbc: df 29 ; pause (0 = wait for key)
 dbbe: f9 ff 04 22 ; beep (duration, pitch)
@@ -2465,14 +2764,16 @@ dbc2: ce 22 ; decrement variable
 dbc4: ce 22 ; decrement variable
 dbc6: ef 22 11 ff 78 01 ; conditional skip
 dbcc: fd ; loop back to start of template
+```
 
-TEMPLATE 7a (empty)
+## TEMPLATE 7a (empty)
 
-TEMPLATE 7b (empty)
+## TEMPLATE 7b (empty)
 
-TEMPLATE 7c (empty)
+## TEMPLATE 7c (empty)
 
-TEMPLATE 7d
+## TEMPLATE 7d
+```
 dbcd: de 29 ; select window
 dbcf: d2 00 ; set drawing flags (C023)
 dbd1: d1 00 ; set drawing flags (C024)
@@ -2485,22 +2786,27 @@ dbe5: ec 03 20 1f ; print text " "
 dbe9: ee 07 20 0b fe 5e c0 1f ; evaluate expression
 dbf1: e0 20 ; print number
 dbf3: ec 04 17 02 1f ; print text "<17><02>"
+```
 
-TEMPLATE 7e (empty)
+## TEMPLATE 7e (empty)
 
-TEMPLATE 7f (empty)
+## TEMPLATE 7f (empty)
 
-TEMPLATE 80 (empty)
+## TEMPLATE 80 (empty)
 
-TEMPLATE 81 (empty)
+## TEMPLATE 81 (empty)
 
-TEMPLATE 82
+## TEMPLATE 82
+[![Template 82](templates/template_82.png)]
+```
 dbf8: d6 ff 71 ; include template
 dbfb: ee 07 23 23 01 ff 20 1f ; evaluate expression
 dc03: ef 23 12 fe 00 01 01 ; conditional skip
 dc0a: fd ; loop back to start of template
+```
 
-TEMPLATE 83
+## TEMPLATE 83
+```
 dc0b: de 29 ; select window
 dc0d: ee 07 20 0a fe 5b c0 1f ; evaluate expression
 dc15: fe 20 fe 00 bd fe fc 02 ; block copy (dest, src, length)
@@ -2534,17 +2840,25 @@ dcaa: fe fe 18 9d fe 8c 9c ff 8c ; block copy (dest, src, length)
 dcb3: d6 ff 77 ; include template
 dcb6: d6 ff 76 ; include template
 dcb9: fd ; loop back to start of template
+```
 
-TEMPLATE 84
+## TEMPLATE 84
+```
 dcba: f8 fe 00 40 fe 40 b7 ; tape: load block (start, length)
+```
 
-TEMPLATE 85
+## TEMPLATE 85
+```
 dcc1: c9 fe 00 40 fe 40 b7 ; tape: save block (start, length)
+```
 
-TEMPLATE 86
+## TEMPLATE 86
+```
 dcc8: f8 fe 00 40 fe 00 1b ; tape: load block (start, length)
+```
 
-TEMPLATE 87
+## TEMPLATE 87
+```
 dccf: de ff 01 ; select window
 dcd2: d0 70 ; set attribute
 dcd4: c5 ; clear window
@@ -2561,8 +2875,10 @@ dcfb: ed ff 03 ff 00 ff bf ff 20 ff 18 ff c0 ; define window
 dd08: f4 ff 02 ff 03 ; XOR window a into b
 dd0d: d8 fe 00 a1 ; call machine code
 dd11: d6 ff 90 ; include template
+```
 
-TEMPLATE 88
+## TEMPLATE 88
+```
 dd14: fe fe 9a 5b fe 00 fa fe e8 03 ; block copy (dest, src, length)
 dd1e: e9 fe fa a7 ff 01 ; POKE byte
 dd24: d8 fe f8 a7 ; call machine code
@@ -2608,13 +2924,17 @@ de0d: fe fe 00 bd 20 fe 00 03 ; block copy (dest, src, length)
 de15: fe fe 00 fa fe 9a 5b fe e8 03 ; block copy (dest, src, length)
 de1f: ee 05 2e ff 8f 1f ; evaluate expression
 de25: d6 ff 8d ; include template
+```
 
-TEMPLATE 89 (empty)
+## TEMPLATE 89 (empty)
 
-TEMPLATE 8a
+## TEMPLATE 8a
+```
 de28: d6 ff 88 ; include template
+```
 
-TEMPLATE 8b
+## TEMPLATE 8b
+```
 de2b: ee 05 22 0b 2e 1f ; evaluate expression
 de31: cf 2e ; increment variable
 de33: e9 20 22 ; POKE byte
@@ -2630,28 +2950,35 @@ de5f: ee 07 23 23 01 ff 0d 1f ; evaluate expression
 de67: cf 2f ; increment variable
 de69: ef 2f 12 ff 0b 01 ; conditional skip
 de6f: fd ; loop back to start of template
+```
 
-TEMPLATE 8c
+## TEMPLATE 8c
+```
 de70: bf 47 ; pen to (y, x)
 de72: e0 24 ; print number
 de74: ec 03 20 1f ; print text " "
+```
 
-TEMPLATE 8d
+## TEMPLATE 8d
+```
 de78: e9 fe 8e 7b 2e ; POKE byte
 de7d: d7 ff 6f ; include template (save/restore state)
 de80: ee 06 2e 2e 01 2a 1f ; evaluate expression
 de87: ef 2e 12 ff 97 01 ; conditional skip
 de8d: fd ; loop back to start of template
+```
 
-TEMPLATE 8e (empty)
+## TEMPLATE 8e (empty)
 
-TEMPLATE 8f
+## TEMPLATE 8f
+```
 de8e: f8 fe 00 a1 fe b8 0b ; tape: load block (start, length)
 de95: ee 0d 20 09 ff fe 28 05 ff 1f 07 ff 1f 1f ; evaluate expression
 dea3: ef 20 0f 28 01 ; conditional skip
 dea8: fd ; loop back to start of template
+```
 
-TEMPLATE 90
+## TEMPLATE 90
+```
 dea9: fd ; loop back to start of template
-
 ```
