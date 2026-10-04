@@ -10,8 +10,9 @@ Inspiration taken from https://github.com/VilleKrumlinde/FairlightZ80/tree/main
 The analysis is done against the 48K version. Where memory addresses are specified,
 these may vary beetween different editions of the game.
 
- * [Room format](./analysis/room_format.md).
- * [Dynamic objects](./analysis/dynamic_objects.md).
+ * [Room format](./analysis/room_format.md)
+ * [Dynamic objects](./analysis/dynamic_objects.md)
+ * [Memory map](./analysis/memory_map.md)
 
  ## AI usage
 
