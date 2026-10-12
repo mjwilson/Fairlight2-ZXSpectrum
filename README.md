@@ -13,6 +13,8 @@ these may vary beetween different editions of the game.
  * [Room format](./analysis/room_format.md)
  * [Dynamic objects](./analysis/dynamic_objects.md)
  * [Memory map](./analysis/memory_map.md)
+ * [Changes in the 128K version](./analysis/128k.md)
+ * [Part 1 to part 2 handover](./analysis/handover.md)
 
  ## AI usage
 

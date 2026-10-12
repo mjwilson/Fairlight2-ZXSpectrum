@@ -84,7 +84,7 @@ to 10). Any other class gives 00.
 ## Object record (20 bytes)
 
 The records of the objects in the current room start at 9DA4. The six records before that
-(9D18-9D8F) are invisible slabs that form the room's walls, floor and ceiling, and 9D90 is the
+(9D18-9D8F) are invisible boxes that form the room's floor, ceiling and four walls, and 9D90 is the
 player.
 
 | Offset | Contents |
@@ -176,10 +176,18 @@ Any other kind does nothing when used.
 
 ### Weapons (kind C)
 
-Using a kind C item changes its class to 12 (89D0). The low nibble, 2, selects a behaviour
-routine (7D7B) that makes the item move on its own once it has been dropped. Each tick it takes
-its direction from the player's record (byte 14, at 9D9E), so it moves the way the player is
-moving, and the player can steer it. It also alternates between two animation frames.
+The spiky ball in part 2 acts as a weapon.
+
+Using a 'kind C' item changes its class to 12 (89D0). The use key (6 or 7) acts through the
+selected slot's pointer, so only the item in that slot is armed. The item stays in the slot, and
+nothing on screen shows that it is armed. It stays armed while it is carried, including across
+room changes.
+
+The low nibble, 2, selects a behaviour routine (7D7B) that makes the item move on its own once
+it has been dropped. Each tick it takes its direction from bits 5 and 6 of the player's byte 14
+(9D9E, decoded by 7CC4). These give the way the player is facing, so the item keeps moving while
+the player stands still, and the player steers it by
+turning. It also alternates between two animation frames.
 
 When a moving kind C object hits another object that has a class (8597-85CA), both are destroyed
 (location FE, taken flag set). This does not depend on the target's "can be killed" flag or its
@@ -187,7 +195,10 @@ hit counter, so it kills creatures that the sword cannot, such as part 2's monks
 used up by its first kill. If the object it hits is the player (class 8), the player's energy is
 set to 0.
 
-Before it is used, the item's class is 0, so it does not move and harms nothing.
+An unarmed kind C item that is moving for any other reason
+kills in the same way. This happens when it is being shoved: by the player, for example,
+or by another moving ball. An armed item on the floor
+has a non-zero class, so a moving kind C item that hits it destroys both.
 
 The kill needs the two bounding boxes to overlap, like any collision. A weapon moving above a low
 creature passes over it without touching it. In part 2, for example, the spiky ball cannot hit
