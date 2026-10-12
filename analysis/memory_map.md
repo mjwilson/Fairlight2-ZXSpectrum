@@ -23,8 +23,7 @@ The Part column says whether a row applies to both parts or to one of them.
 | 8FEC-906D | 82 | 2 | *Not identified* |
 | 906E-923B | 1CE | both | Item sprites |
 | 923C-925F | 24 | both | *Not identified* |
-| 9260-96BB | 45C | both | Player sprite frames |
-| 96BC-9C8B | 5D0 | both | *Not identified* |
+| 9260-9C8B | A2C | both | Player sprite frames: 14 frames of 24x31, BA bytes each |
 | 9C8C-9D17 | 8C | both | Saved copy of the floor, ceiling, wall and player records |
 | 9D18-A0FF | 3E8 | both | Object records: floor, ceiling and walls, the player, then the room's objects |
 | A100-B8FF | 1800 | both | Off-screen bitmap (where rooms are drawn: windows 2 and 4) |

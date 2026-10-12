@@ -25,14 +25,14 @@ The addresses for the implementation of the opcodes are stored in a data table a
 | -------- | ------- | ------- |
 | c0 | 704b | Draw a line from the line start (C039) to the pen (C037), using the current pixel mode and line pattern. |
 | c1 | 75f7 | Place an object (scenery) in the room: `C1 <type> <flags> <x> <y> <z>`. Adds a 20-byte record to the room object list and draws its sprite. See [C1, D5 and CB objects](#c1-d5-and-cb-objects) below. |
-| c2 | 762b | Set the room's bounding box: `C2 <n>` (a raw byte, 01-0F). It copies 6 bytes from the preset table at 7A17 + 6n into the six invisible boundary slabs at 9D18-9D8F: floor y (9D1F), ceiling y (9D33), two x walls (9D46, 9D5A) and two z walls (9D70, 9D84). The collision code (8B7E) uses these slabs. For example, preset 01 is floor 32, ceiling B4, x walls B2/28 and z walls 28/AE. |
+| c2 | 762b | Set the room's bounding box: `C2 <n>` (a raw byte, 01-0F). It copies 6 bytes from the preset table at 7A17 + 6n into the room's six invisible boundary records at 9D18-9D8F (its floor, ceiling and four walls): floor y (9D1F), ceiling y (9D33), two x walls (9D46, 9D5A) and two z walls (9D70, 9D84). The collision code (8B7E) uses these records. For example, preset 01 is floor 32, ceiling B4, x walls B2/28 and z walls 28/AE. |
 | c3 | 7656 | Sets position (typically used before including a template) |
 | c4 | 6e08 | Set the line start (C039) to the pen position (C037). |
 | c5 | 6d3f | Clear the current window: zero its pixels and set its attributes. |
 | c6 | 6d5f | Set the attributes of the current window to the colour from `D0` (the whole attribute byte). |
 | c7 | 6d67 | Like C6, but changes only the INK bits (0-2) of the current window's attributes. |
 | c8 | 6d6b | Like C6, but changes only the BRIGHT bit (6). |
-| c9 | 6d12 | Tape save: `C9 <start> <length>`, through the ROM saving routine (04C6). Both parts use `c9 fe 00 40 fe 40 b7` (save 4000-F73F) for the **in-game save**. Press Space + Symbol Shift for the quit menu, then **S**: part 1 template 4D includes 70, and part 2 template 68 includes 85. A saved game is a plain memory image that carries on from just after the save when loaded. The part 2 tape image is one of these saves, made by the handover template 88 (which also includes 85). See [objects.md](objects.md#part-1-to-part-2-handover). |
+| c9 | 6d12 | Tape save: `C9 <start> <length>`, through the ROM saving routine (04C6). Both parts use `c9 fe 00 40 fe 40 b7` (save 4000-F73F) for the **in-game save**. Press Space + Symbol Shift for the quit menu, then **S**: part 1 template 4D includes 70, and part 2 template 68 includes 85. A saved game is a plain memory image that carries on from just after the save when loaded. |
 | ca | 754c | Mirror the current window left to right (pixels and attributes). Uses the window-copy routine at 6A2F in mode 8. |
 | cb | 766f | Place the current room's movable objects (items and creatures). No operands. Resets the six creature hit counters at 7B88-7B8D to 4, then places every entry in the item list at (C05B) whose location equals the current room in C05D. See [dynamic_objects.md](dynamic_objects.md#item-list-entries). Used once, in the main room-drawing template at DA2A, straight after the room template (`d6 20`) and `c3 00 00 00`. |
 | cc | 6d63 | Like C6, but changes only the PAPER bits (3-5). |
