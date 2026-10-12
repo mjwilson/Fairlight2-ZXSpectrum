@@ -3,7 +3,9 @@
 This repo aims to document the data structures and behaviour of the ZX Spectrum
 version of Fairlight 2. The original intention was to find out why the game
 couldn't be completed - in fact, it was discovered that completion is possible
-(although there are some bugs which make this tricky).
+(although there are some bugs which make this tricky: it can't be done in the 128K
+version of the game, and even in the 48K version, it can't be done if you die and restart
+part 2).
 
 Inspiration taken from https://github.com/VilleKrumlinde/FairlightZ80/tree/main
 
