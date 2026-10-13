@@ -18,7 +18,8 @@ The Part column says whether a row applies to both parts or to one of them.
 | 7A1D-7AE8 | CC | both | Room bounding-box presets for the `C2` opcode: presets 01-22 of 6 bytes (part 1 uses 01-0F, part 2 uses 01, 0C and 10-22) |
 | 7AE9-7B6F | 87 | both | Unused (all zero) |
 | 7B70-7BF8 | 89 | both | Engine variables and workspace, including the inventory |
-| 7BF9-8FBA | 13C2 | both | Code: the game engine (objects, movement, collision, inventory, creature behaviour) |
+| 7BF9-8FBC | 13C4 | both | Code: the game engine (objects, movement, collision, inventory, creature behaviour) |
+| 8FBD-8FEB | 2F | both | A fragment of the authors' assembler source text, left in memory |
 | 8FEC-906D | 82 | 1 | Item sprites of types 34 and 35 |
 | 8FEC-906D | 82 | 2 | *Not identified* |
 | 906E-923B | 1CE | both | Item sprites |
@@ -51,16 +52,15 @@ The Part column says whether a row applies to both parts or to one of them.
 - **6340-657F** holds the fill textures used by the `DC` opcode (pointer at C01E). Each is a 16×16 tile of
   32 bytes. Part 1 uses textures up to 11, and part 2 up to 10.
 
-## Code (6590-8FBA)
+## Code (6590-8FBC)
 
 The code is in two blocks, with the main data tables between them:
 
 - **6590-7767**: low-level graphics (pixel addressing, plotting, lines, flood fill, sprites,
   windows, text) and the template interpreter. The opcode jump table for C0-FF is at **6C31-6CB0**.
   See [room_format.md](room_format.md).
-- **7BF9-8FBA**: the game engine: object placement and movement, collision (8B7E), the inventory,
-  potion and carpet, fighting and creature behaviour. See [objects.md](objects.md) and
-  [dynamic_objects.md](dynamic_objects.md).
+- **7BF9-8FBC**: the game engine: object placement and movement, collision (8B7E), the inventory,
+  potion and carpet, fighting and creature behaviour. See [dynamic_objects.md](dynamic_objects.md).
 
 ## Engine tables and variables (7768-7BF8)
 
@@ -100,7 +100,12 @@ animation frames of creatures.
   part 2 can be drawn in both: the magic wand (type 29, 91A4), the sword (08, 90F6) and the keys
   (0E, 91C0). Part 1's magic potion (2A, 90DA) and part 2's potion (2B, 908A) and bottle (09, 91D4)
   are here too. 8FEC-906D holds types 34 and 35 in part 1, and something else in part 2.
-- **9260-96BB, the player**, the same in both parts.
+- **9260-9C8B, the player**, the same in both parts: 14 frames, each a 24x31 bitmap and mask (BA
+  bytes). Frame n is at 9260 + BA·n. Frames 0-5 (9260-96BB) are the walking frames, and they are the
+  only ones that the magic potion swaps with the witch. The code also refers directly to frames 1 and 4
+  (7F35, 7F4A), 3 (812D), 6 (96BC, picking up, 8032), 8 (9830, fighting, 814D) and 12-13 (9B18 and
+  9BD2, carrying, 7F44 and 7F5A). The engine mirrors the frames in place when the player turns round
+  (7C82), so a snapshot may hold them mirrored.
 - **Part 1, E240-E69B: the witch.** Using the magic potion swaps these 45C bytes with the player's
   frames at 9260 (8968).
 - **Part 1, E69C-FFFF: scenery and creatures**, from the wolf (type 21, E69C) to the second
@@ -145,7 +150,7 @@ Each entry is 6 bytes: location, type, flags, x, y, z. The list ends with locati
 - **BD00-BFFF, the restart copy.** The start-up template (part 1: 69, part 2: 75) copies the list
   here (300 bytes) once, and the restart template (part 1: 6A, part 2: 83) copies it back every time
   the game is started or restarted. Part 2's restart template also runs the part 1 handover the
-  first time; see [Part 1 to part 2 handover](objects.md#part-1-to-part-2-handover).
+  first time; see [Part 1 to part 2 handover](handover.md).
 
 ## Interpreter state and templates (C000 up to the end of the templates)
 
