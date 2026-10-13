@@ -41,7 +41,7 @@ The addresses for the implementation of the opcodes are stored in a data table a
 | cf | 6e0f | Increment a variable: `CF <var>`. |
 | d0 | 710a | Sets the colours for the screen. Takes a single attribute value as operand. |
 | d1 | 710f | Set a byte directly: `D1 <n>` (literal, no FE/FF prefix) writes n to C024, which is the drawing-flags byte that E1-E6 change one bit at a time. |
-| d2 | 7114 | Set a byte directly: `D2 <n>` (literal, no FE/FF prefix) writes n to C023, which is a second drawing-flags byte, which the sprite blitter at 67CD reads (bits 0, 3 and 4). |
+| d2 | 7114 | Set a byte directly: `D2 <n>` (literal, no FE/FF prefix) writes n to C023, which is a second drawing-flags byte, read by the sprite blitter at 67CD: bit 0 the sprite starts left of x = 0, bit 1 draw only the character advance's width (set by the text routines), bit 2 masked sprite (mask follows the bitmap), bit 3 OR onto the screen, bit 4 textured text (the 8-byte glyph is copied to C06E and ANDed with the fill texture at (C01E) before drawing), bit 7 take a masked sprite's background from the off-screen buffer. |
 | d3 | 7119 | Set the line pattern: `D3 <n>` writes n to C026. It is rotated once per plotted pixel, and a pixel is skipped when a 1 bit comes out, so 00 is a solid line. |
 | d4 | 711e | Set the attribute mask: `D4 <n>` writes n to C027. When flag bit 3 is set, plotting a pixel also colours its attribute cell: new = (old AND C027) OR (C022 AND NOT C027). |
 | d5 | 75f1 | Place a doorway/exit volume: `D5 <type> <x> <y> <z>`. Same code as C1 but uses object types 36+`type`, has no flags operand (kind is forced to 1 = exit), and only types 1 and 3 have a sprite (the visible door frames). See [C1, D5 and CB objects](#c1-d5-and-cb-objects) below. |
@@ -75,7 +75,7 @@ The addresses for the implementation of the opcodes are stored in a data table a
 | f1 | 752d | Invert the current window's pixels (6A2F in mode 4, with CPL patched in at 6A82). |
 | f2 | 7015 | Plot a single point at the pen position (C037). |
 | f3 | 7548 | Swap the contents of windows a and b: `F3 <a> <b>` (6A2F in mode 2). |
-| f4 | 7533 | Combine window a into window b with XOR: `F4 <a> <b>` (pixels only; mode 4 with XOR (HL) patched in at 6A82). |
+| f4 | 7533 | Combine window b into window a with XOR: `F4 <a> <b>` sets window a to a XOR b; window b is unchanged (pixels only; mode 4 with XOR (HL) patched in at 6A82, which stores the result through HL, the first window). |
 | f5 | 7537 | As F4, but with AND. |
 | f6 | 753b | As F4, but with OR. |
 | f7 | 73fb | Scroll the current window vertically: `F7 <n>`. Bits 0-2 + 1 give the distance in pixels (1-8). Bit 5 set scrolls up, clear scrolls down. Bit 3 set also scrolls the attributes. Bit 4 set wraps the content round (through the buffer at B900). Bit 7 set leaves the uncovered lines uncleared (otherwise they are cleared to 0). The main loop uses `f7 ff 67` to scroll the message window. |
@@ -86,7 +86,7 @@ The addresses for the implementation of the opcodes are stored in a data table a
 | fc | 6da1 | Like `DA`, but y and x are standard operands (`FC <y> <x>`). |
 | fd | 7222 | Loop back to the start of the current template (from C010). It also checks the BREAK keys (6C07). |
 | fe | 6cf2 | Block copy: `FE <dest> <src> <len>`. Handles overlapping blocks correctly (LDIR or LDDR). Note that FE is also the word-operand prefix, so the meaning depends on position: in the opcode position it is this opcode. |
-| ff | b521 | Not used. The table entry points to B521, which is data, not code. |
+| ff | b521 | Not used. The table really ends at FE: the two bytes where FF's entry would be (6CAF) are the start of the dispatcher's own code, `LD HL,6CB5` (21 B5 6C), so FF would jump to B521, which is data. |
 
 ## Indirect versus direct operators
 
@@ -261,8 +261,9 @@ entry `<dest>` of the C060 table. It is the scripting language's assignment stat
   out, add is assumed, so the first term simply loads the running total, which starts at 0.
 - `1F` ends the expression and stores the result.
 
-The handler is at 72CF. The token dispatch is at 72FD, and the table at 7310 is indexed by the
-op or token byte.
+The handler is at 72CF. The token dispatch is at 72FD, which indexes a table of handler addresses at
+7310 by the op or token byte. Only entries 01-0B are used (7312-7327); the two bytes at 7310, where
+entry 0 would be, are the last instruction of the store code (`LD (HL),C`, `RET`).
 
 Examples:
 - `ee 07 22 0b fe 70 7b 1f` sets var22 to the byte at 7B70.
