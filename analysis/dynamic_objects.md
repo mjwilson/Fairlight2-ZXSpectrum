@@ -78,8 +78,8 @@ difference between the object's position and that point.
 **Class** (byte 9). For a creature this selects its behaviour routine (7D6C-7EC7): for example
 classes 4, 6, 7, 9, 0B and 0E chase the player, and class 0D moves in random directions. When the
 object is placed, byte 13 of its record is set from the class's low nibble: class 1 gives 07,
-class 2 gives 02, class 0C gives 82, and classes 04-0B and 0D-0F give 05 (which also set byte 17
-to 10). Any other class gives 00.
+class 2 gives 02, classes 04-0B give 05 and class 0C gives 82 (classes 04-0C also set byte 17
+to 10). Any other class, including 0D-0F, gives 00.
 
 ## Object record (20 bytes)
 
