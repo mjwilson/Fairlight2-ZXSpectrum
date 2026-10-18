@@ -9,6 +9,8 @@ part 2).
 
 Inspiration taken from https://github.com/VilleKrumlinde/FairlightZ80/tree/main
 
+## Analysis
+
 The analysis is done against the 48K version. Where memory addresses are specified,
 these may vary beetween different editions of the game.
 
@@ -18,6 +20,10 @@ these may vary beetween different editions of the game.
  * [Changes in the 128K version](./analysis/128k.md)
  * [Part 1 to part 2 handover](./analysis/handover.md)
 
- ## AI usage
+## Fixes
 
- I started the analysis manually but more recently a huge amount of it has been done by Claude Code.
+If you have a working 48K TZX file, you can fix the part 2 restart issues [using this tool](./fixes.html).
+
+## AI usage
+
+I started the analysis manually but more recently a huge amount of it has been done by Claude Code.
